@@ -1,0 +1,17 @@
+name: clean_feature
+description: Generic Clean Architecture + BLoC feature generator for Dart/Flutter
+version: 0.1.0+1
+
+environment:
+  mason: ">=0.1.1<0.1.2"
+
+vars:
+  feature_name:
+    type: string
+    description: The name of the feature
+    prompt: What is the feature name?
+  project_name:
+    type: string
+    description: The root import package name (optional)
+    prompt: What is your project package name? (optional)
+    default: "iwallet_next"
