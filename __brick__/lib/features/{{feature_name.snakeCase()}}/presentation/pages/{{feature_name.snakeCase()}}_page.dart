@@ -1,46 +1,20 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../bloc/{{feature_name.snakeCase()}}_bloc.dart';
-import '../bloc/{{feature_name.snakeCase()}}_event.dart';
-import '../bloc/{{feature_name.snakeCase()}}_state.dart';
-import 'package:{{project_name}}/core/di/injection.dart';
-import 'package:{{project_name}}/core/widgets/auto_bloc_state_builder.dart';
-import 'package:{{project_name}}/features/{{feature_name.snakeCase()}}/domain/entities/{{feature_name.snakeCase()}}.dart';
+import 'package:injectable/injectable.dart';
+import 'package:{{project_name}}/core/network/dio_client.dart';
+import '../models/{{feature_name.snakeCase()}}_model.dart';
+import 'package:{{project_name}}/core/constants/endpoints.dart';
+import './{{feature_name.snakeCase()}}_remote_datasource_interface.dart';
 
-class {{feature_name.pascalCase()}}Page extends StatelessWidget {
-  const {{feature_name.pascalCase()}}Page({super.key});
+@LazySingleton(as: {{feature_name.pascalCase()}}RemoteDataSource)
+class {{feature_name.pascalCase()}}RemoteDataSourceImpl implements {{feature_name.pascalCase()}}RemoteDataSource {
+  final DioClient dioClient;
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<{{feature_name.pascalCase()}}Bloc>(),
-      child:  _{{feature_name.pascalCase()}}Body(),
-    );
-  }
-} 
-
-class _{{feature_name.pascalCase()}}Body extends StatelessWidget {
-  const _{{feature_name.pascalCase()}}Body({super.key});
+  {{feature_name.pascalCase()}}RemoteDataSourceImpl({required this.dioClient});
 
   @override
-  Widget build(BuildContext context) {
-    return AutoBlocStateBuilder<{{feature_name.pascalCase()}}Bloc, {{feature_name.pascalCase()}}State, List<{{feature_name.pascalCase()}> ,{{feature_name.pascalCase()}Event>(
-      loadEvent: {{feature_name.pascalCase()}}LoadEvent(),
-      builder: (context, state) {
-        return const Scaffold(
-          appBar: AppBar(
-            title: Text('{{feature_name.pascalCase()}}'),
-          ),
-          body: ListView.builder(
-            itemBuilder: (context, index) {
-              final {{feature_name.camelCase()}} = state.{{feature_name.camelCase()}}s[index];
-              return {{feature_name.pascalCase()}}ListItem(
-                {{feature_name.camelCase()}}: {{feature_name.camelCase()}},
-              );
-            },
-          ),
-        );
-      },
-    );
+  Future<List<{{feature_name.pascalCase()}}Model>> get{{feature_name.pascalCase()}}s() async {
+    // TODO: Update endpoint
+    final response = await dioClient.get(Endpoints.{{feature_name.camelCase()}});
+    final data = response.data['data'] as List;
+    return data.map((json) => {{feature_name.pascalCase()}}Model.fromJson(json)).toList();
   }
 } 
