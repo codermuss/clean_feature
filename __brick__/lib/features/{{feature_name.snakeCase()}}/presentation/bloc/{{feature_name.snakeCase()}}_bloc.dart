@@ -19,7 +19,7 @@ class {{feature_name.pascalCase()}}Bloc extends Bloc<{{feature_name.pascalCase()
     emit({{feature_name.pascalCase()}}Loading());
     final result = await get{{feature_name.pascalCase()}}s();
     result.fold(
-      (failure) => emit({const {feature_name.pascalCase()}}Error(message: 'Failed to load {{feature_name.camelCase()}}s')),
+      (failure) => emit(const {{feature_name.pascalCase()}}Error(message: 'Failed to load {{feature_name.camelCase()}}s')),
       ({{feature_name.camelCase()}}s) => emit({{feature_name.pascalCase()}}Loaded({{feature_name.camelCase()}}s: {{feature_name.camelCase()}}s)),
     );
   }
