@@ -30,4 +30,13 @@ class {{feature_name.pascalCase()}}RepositoryImpl implements {{feature_name.pasc
       saveToLocal: (data) => localDataSource.cache{{feature_name.pascalCase()}}s(data),
     );
   }
+
+  @override
+  Future<Either<Failure, {{feature_name.pascalCase()}}>> get{{feature_name.pascalCase()}}() async {
+    return repositoryHelper.fetchData<{{feature_name.pascalCase()}}Model>(
+      fetchFromRemote: () => remoteDataSource.get{{feature_name.pascalCase()}}(),
+      fetchFromLocal: () => localDataSource.getCached{{feature_name.pascalCase()}}(),
+      saveToLocal: (data) => localDataSource.cache{{feature_name.pascalCase()}}(data),
+    );
+  }
 }

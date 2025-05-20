@@ -13,6 +13,7 @@ class {{feature_name.pascalCase()}}Initial extends {{feature_name.pascalCase()}}
 
 class {{feature_name.pascalCase()}}Loading extends {{feature_name.pascalCase()}}State implements BaseLoading {}
 
+{{#is_list}}
 class {{feature_name.pascalCase()}}Loaded extends {{feature_name.pascalCase()}}State implements BaseLoaded {
   final List<{{feature_name.pascalCase()}}> {{feature_name.camelCase()}}s;
 
@@ -24,6 +25,20 @@ class {{feature_name.pascalCase()}}Loaded extends {{feature_name.pascalCase()}}S
   @override
   get data => {{feature_name.camelCase()}}s;
 }
+{{/is_list}}
+{{^is_list}}
+class {{feature_name.pascalCase()}}Loaded extends {{feature_name.pascalCase()}}State implements BaseLoaded {
+  final {{feature_name.pascalCase()}} {{feature_name.camelCase()}};
+
+  const {{feature_name.pascalCase()}}Loaded({required this.{{feature_name.camelCase()}}});
+
+  @override
+  List<Object> get props => [{{feature_name.camelCase()}}];
+
+  @override
+  get data => {{feature_name.camelCase()}};
+}
+{{/is_list}}
 
 class {{feature_name.pascalCase()}}Error extends {{feature_name.pascalCase()}}State implements BaseError {
   final String message;

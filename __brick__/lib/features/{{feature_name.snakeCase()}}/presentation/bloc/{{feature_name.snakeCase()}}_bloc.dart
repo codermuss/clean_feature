@@ -6,9 +6,9 @@ import '{{feature_name.snakeCase()}}_state.dart';
 
 @lazySingleton
 class {{feature_name.pascalCase()}}Bloc extends Bloc<{{feature_name.pascalCase()}}Event, {{feature_name.pascalCase()}}State> {
-  final Get{{feature_name.pascalCase()}}s get{{feature_name.pascalCase()}}s;
+  final Get{{feature_name.pascalCase()}}{{#is_list}}s{{/is_list}} get{{feature_name.pascalCase()}}{{#is_list}}s{{/is_list}};
 
-  {{feature_name.pascalCase()}}Bloc({required this.get{{feature_name.pascalCase()}}s}) : super({{feature_name.pascalCase()}}Initial()) {
+  {{feature_name.pascalCase()}}Bloc({required this.get{{feature_name.pascalCase()}}{{#is_list}}s{{/is_list}}}) : super({{feature_name.pascalCase()}}Initial()) {
     on<{{feature_name.pascalCase()}}LoadEvent>(_onLoad{{feature_name.pascalCase()}});
   }
 
@@ -17,10 +17,10 @@ class {{feature_name.pascalCase()}}Bloc extends Bloc<{{feature_name.pascalCase()
     Emitter<{{feature_name.pascalCase()}}State> emit,
   ) async {
     emit({{feature_name.pascalCase()}}Loading());
-    final result = await get{{feature_name.pascalCase()}}s();
+    final result = await get{{feature_name.pascalCase()}}{{#is_list}}s{{/is_list}}();
     result.fold(
-      (failure) => emit(const {{feature_name.pascalCase()}}Error(message: 'Failed to load {{feature_name.camelCase()}}s')),
-      ({{feature_name.camelCase()}}s) => emit({{feature_name.pascalCase()}}Loaded({{feature_name.camelCase()}}s: {{feature_name.camelCase()}}s)),
+      (failure) => emit(const {{feature_name.pascalCase()}}Error(message: 'Failed to load {{feature_name.camelCase()}}{{#is_list}}s{{/is_list}}')),
+      ({{feature_name.camelCase()}}{{#is_list}}s{{/is_list}}) => emit({{feature_name.pascalCase()}}Loaded({{feature_name.camelCase()}}{{#is_list}}s{{/is_list}}: {{feature_name.camelCase()}}{{#is_list}}s{{/is_list}})),
     );
   }
 } 

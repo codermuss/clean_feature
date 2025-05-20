@@ -25,25 +25,40 @@ class _{{feature_name.pascalCase()}}Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AutoBlocStateBuilder<{{feature_name.pascalCase()}}Bloc, {{feature_name.pascalCase()}}State, List<{{feature_name.pascalCase()}}>, {{feature_name.pascalCase()}}Event>(
+    return AutoBlocStateBuilder<
+      {{feature_name.pascalCase()}}Bloc,
+      {{feature_name.pascalCase()}}State,
+      {{#is_list}}List<{{feature_name.pascalCase()}}>{{/is_list}}{{^is_list}}{{feature_name.pascalCase()}}{{/is_list}},
+      {{feature_name.pascalCase()}}Event
+    >(
       loadEvent: {{feature_name.pascalCase()}}LoadEvent(),
       onSuccess: (data) {
         return Scaffold(
           appBar: AppBar(
             title: Text('{{feature_name.pascalCase()}}'),
           ),
-          body: ListView.builder(
-            itemCount: data.length,
-            itemBuilder: (context, index) {
-              final {{feature_name.camelCase()}} = data[index];
-              return {{feature_name.pascalCase()}}ListItem(
-                {{feature_name.camelCase()}}: {{feature_name.camelCase()}},
-                onTap: () {
-                  print('${{{feature_name.camelCase()}}.id} was tapped');
-                }
-              );
-            },
-          ),
+          body: {{#is_list}}
+            ListView.builder(
+              itemCount: data.length,
+              itemBuilder: (context, index) {
+                final {{feature_name.camelCase()}} = data[index];
+                return {{feature_name.pascalCase()}}ListItem(
+                  {{feature_name.camelCase()}}: {{feature_name.camelCase()}},
+                  onTap: () {
+                    print('${{{feature_name.camelCase()}}.id} was tapped');
+                  }
+                );
+              },
+            )
+          {{/is_list}}
+          {{^is_list}}
+            {{feature_name.pascalCase()}}ListItem(
+              {{feature_name.camelCase()}}: data,
+              onTap: () {
+                print('${data.id} was tapped');
+              },
+            )
+          {{/is_list}}
         );
       },
     );
