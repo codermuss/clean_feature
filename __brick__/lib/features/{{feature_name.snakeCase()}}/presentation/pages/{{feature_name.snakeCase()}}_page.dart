@@ -14,24 +14,25 @@ class {{feature_name.pascalCase()}}Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<{{feature_name.pascalCase()}}Bloc>(),
-      child:  _{{feature_name.pascalCase()}}Body(),
+      child: const _{{feature_name.pascalCase()}}Body(),
     );
   }
-} 
+}
 
 class _{{feature_name.pascalCase()}}Body extends StatelessWidget {
   const _{{feature_name.pascalCase()}}Body({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return AutoBlocStateBuilder<{{feature_name.pascalCase()}}Bloc, {{feature_name.pascalCase()}}State, List<{{feature_name.pascalCase()}> ,{{feature_name.pascalCase()}Event>(
+    return AutoBlocStateBuilder<{{feature_name.pascalCase()}}Bloc, {{feature_name.pascalCase()}}State, List<{{feature_name.pascalCase()}}>, {{feature_name.pascalCase()}}Event>(
       loadEvent: {{feature_name.pascalCase()}}LoadEvent(),
       builder: (context, state) {
-        return const Scaffold(
+        return Scaffold(
           appBar: AppBar(
             title: Text('{{feature_name.pascalCase()}}'),
           ),
           body: ListView.builder(
+            itemCount: state.{{feature_name.camelCase()}}s.length,
             itemBuilder: (context, index) {
               final {{feature_name.camelCase()}} = state.{{feature_name.camelCase()}}s[index];
               return {{feature_name.pascalCase()}}ListItem(
@@ -43,4 +44,4 @@ class _{{feature_name.pascalCase()}}Body extends StatelessWidget {
       },
     );
   }
-} 
+}
