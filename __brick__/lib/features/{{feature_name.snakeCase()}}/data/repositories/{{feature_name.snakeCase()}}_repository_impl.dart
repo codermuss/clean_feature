@@ -22,6 +22,7 @@ class {{feature_name.pascalCase()}}RepositoryImpl implements {{feature_name.pasc
     required NetworkInfo networkInfo,
   }) : repositoryHelper = RepositoryHelper(networkInfo: networkInfo);
 
+  {{#is_list}}
   @override
   Future<Either<Failure, List<{{feature_name.pascalCase()}}>>> get{{feature_name.pascalCase()}}s() async {
     return repositoryHelper.fetchData<List<{{feature_name.pascalCase()}}Model>>(
@@ -30,7 +31,8 @@ class {{feature_name.pascalCase()}}RepositoryImpl implements {{feature_name.pasc
       saveToLocal: (data) => localDataSource.cache{{feature_name.pascalCase()}}s(data),
     );
   }
-
+  {{/is_list}}
+  {{^is_list}}
   @override
   Future<Either<Failure, {{feature_name.pascalCase()}}>> get{{feature_name.pascalCase()}}() async {
     return repositoryHelper.fetchData<{{feature_name.pascalCase()}}Model>(
@@ -39,4 +41,5 @@ class {{feature_name.pascalCase()}}RepositoryImpl implements {{feature_name.pasc
       saveToLocal: (data) => localDataSource.cache{{feature_name.pascalCase()}}(data),
     );
   }
+  {{/is_list}}
 }
