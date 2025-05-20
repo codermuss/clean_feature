@@ -6,6 +6,7 @@ import '../bloc/{{feature_name.snakeCase()}}_state.dart';
 import 'package:{{project_name}}/core/di/injection.dart';
 import 'package:{{project_name}}/core/widgets/auto_bloc_state_builder.dart';
 import 'package:{{project_name}}/features/{{feature_name.snakeCase()}}/domain/entities/{{feature_name.snakeCase()}}.dart';
+import '../widgets/{{feature_name.snakeCase()}}_list_item.dart';
 
 class {{feature_name.pascalCase()}}Page extends StatelessWidget {
   const {{feature_name.pascalCase()}}Page({super.key});
