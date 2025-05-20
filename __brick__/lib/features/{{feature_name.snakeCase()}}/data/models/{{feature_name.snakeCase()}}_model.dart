@@ -3,7 +3,7 @@ import '../../domain/entities/{{feature_name.snakeCase()}}.dart';
 
 part '{{feature_name.snakeCase()}}_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: false)
 class {{feature_name.pascalCase()}}Model extends {{feature_name.pascalCase()}} {
   const {{feature_name.pascalCase()}}Model({required String? id}) : super(id: id??'default_value');
 
