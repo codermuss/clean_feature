@@ -20,23 +20,26 @@ class {{feature_name.pascalCase()}}Page extends StatelessWidget {
 }
 
 class _{{feature_name.pascalCase()}}Body extends StatelessWidget {
-  const _{{feature_name.pascalCase()}}Body({super.key});
+  const _{{feature_name.pascalCase()}}Body();
 
   @override
   Widget build(BuildContext context) {
     return AutoBlocStateBuilder<{{feature_name.pascalCase()}}Bloc, {{feature_name.pascalCase()}}State, List<{{feature_name.pascalCase()}}>, {{feature_name.pascalCase()}}Event>(
       loadEvent: {{feature_name.pascalCase()}}LoadEvent(),
-      builder: (context, state) {
+      onSuccess: (data) {
         return Scaffold(
           appBar: AppBar(
             title: Text('{{feature_name.pascalCase()}}'),
           ),
           body: ListView.builder(
-            itemCount: state.{{feature_name.camelCase()}}s.length,
+            itemCount: data.length,
             itemBuilder: (context, index) {
-              final {{feature_name.camelCase()}} = state.{{feature_name.camelCase()}}s[index];
+              final {{feature_name.camelCase()}} = data[index];
               return {{feature_name.pascalCase()}}ListItem(
                 {{feature_name.camelCase()}}: {{feature_name.camelCase()}},
+                onTap: () {
+                  print('${{{feature_name.camelCase()}}.id} was tapped');
+                }
               );
             },
           ),
