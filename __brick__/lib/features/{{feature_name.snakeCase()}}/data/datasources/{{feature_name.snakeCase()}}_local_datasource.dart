@@ -1,6 +1,7 @@
 import './{{feature_name.snakeCase()}}_local_datasource_interface.dart';
-import '../../models/{{feature_name.snakeCase()}}_model.dart';
+import '../models/{{feature_name.snakeCase()}}_model.dart';
 
+@LazySingleton(as: {{feature_name.pascalCase()}}LocalDataSource)
 class {{feature_name.pascalCase()}}LocalDataSourceImpl implements {{feature_name.pascalCase()}}LocalDataSource {
   // You can inject a storage service here (e.g. SharedPreferences, Hive, etc.)
 

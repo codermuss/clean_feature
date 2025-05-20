@@ -6,13 +6,13 @@ import '../entities/{{feature_name.snakeCase()}}.dart';
 import '../repositories/{{feature_name.snakeCase()}}_repository.dart';
 
 @lazySingleton
-class Get{{feature_name.pascalCase()}}s implements UseCase<List<{{feature_name.pascalCase()}}>, NoParams> {
+class Get{{feature_name.pascalCase()}}s implements NoParamUseCase<List<{{feature_name.pascalCase()}}>> {
   final {{feature_name.pascalCase()}}Repository repository;
 
   Get{{feature_name.pascalCase()}}s(this.repository);
 
   @override
-  Future<Either<Failure, List<{{feature_name.pascalCase()}}>>> call(NoParams params) async {
+  Future<Either<Failure, List<{{feature_name.pascalCase()}}>>> call() async {
     return await repository.get{{feature_name.pascalCase()}}s();
-  }
+    }
 } 

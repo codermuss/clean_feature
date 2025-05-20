@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:{{project_name}}/core/network/dio_client.dart';
-import '../../models/{{feature_name.snakeCase()}}_model.dart';
+import '../models/{{feature_name.snakeCase()}}_model.dart';
 import 'package:{{project_name}}/core/constants/endpoints.dart';
 import './{{feature_name.snakeCase()}}_remote_datasource_interface.dart';
 

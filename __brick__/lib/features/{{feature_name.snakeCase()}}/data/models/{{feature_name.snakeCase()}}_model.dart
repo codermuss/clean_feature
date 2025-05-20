@@ -5,17 +5,7 @@ part '{{feature_name.snakeCase()}}_model.g.dart';
 
 @JsonSerializable()
 class {{feature_name.pascalCase()}}Model extends {{feature_name.pascalCase()}} {
-  const {{feature_name.pascalCase()}}Model({
-    required String id,
-    required String name,
-    required String description,
-  }) : super(
-          id: id,
-          name: name,
-          description: description,
-        );
+  const {{feature_name.pascalCase()}}Model({required String? id}) : super(id: id??'default_value');
 
   factory {{feature_name.pascalCase()}}Model.fromJson(Map<String, dynamic> json) => _${{feature_name.pascalCase()}}ModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _${{feature_name.pascalCase()}}ModelToJson(this);
 } 

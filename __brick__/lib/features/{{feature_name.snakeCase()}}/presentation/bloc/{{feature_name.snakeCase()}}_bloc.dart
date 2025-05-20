@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 import '../../domain/usecases/get_{{feature_name.snakeCase()}}.dart';
 import '{{feature_name.snakeCase()}}_event.dart';
 import '{{feature_name.snakeCase()}}_state.dart';
+import 'package:{{project_name}}/core/usecases/usecase.dart';
 
 @lazySingleton
 class {{feature_name.pascalCase()}}Bloc extends Bloc<{{feature_name.pascalCase()}}Event, {{feature_name.pascalCase()}}State> {
