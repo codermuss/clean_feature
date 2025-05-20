@@ -9,17 +9,17 @@ class {{feature_name.pascalCase()}}Bloc extends Bloc<{{feature_name.pascalCase()
   final Get{{feature_name.pascalCase()}}s get{{feature_name.pascalCase()}}s;
 
   {{feature_name.pascalCase()}}Bloc({required this.get{{feature_name.pascalCase()}}s}) : super({{feature_name.pascalCase()}}Initial()) {
-    on<Load{{feature_name.pascalCase()}}s>(_onLoad{{feature_name.pascalCase()}}s);
+    on<{{feature_name.pascalCase()}}LoadEvent>(_onLoad{{feature_name.pascalCase()}});
   }
 
-  Future<void> _onLoad{{feature_name.pascalCase()}}s(
-    Load{{feature_name.pascalCase()}}s event,
+  Future<void> _onLoad{{feature_name.pascalCase()}}(
+    {{feature_name.pascalCase()}}LoadEvent event,
     Emitter<{{feature_name.pascalCase()}}State> emit,
   ) async {
     emit({{feature_name.pascalCase()}}Loading());
     final result = await get{{feature_name.pascalCase()}}s();
     result.fold(
-      (failure) => emit({{feature_name.pascalCase()}}Error(message: 'Failed to load {{feature_name.camelCase()}}s')),
+      (failure) => emit({const {feature_name.pascalCase()}}Error(message: 'Failed to load {{feature_name.camelCase()}}s')),
       ({{feature_name.camelCase()}}s) => emit({{feature_name.pascalCase()}}Loaded({{feature_name.camelCase()}}s: {{feature_name.camelCase()}}s)),
     );
   }

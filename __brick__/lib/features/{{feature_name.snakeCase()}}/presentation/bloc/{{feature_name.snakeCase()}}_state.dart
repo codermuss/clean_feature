@@ -20,6 +20,9 @@ class {{feature_name.pascalCase()}}Loaded extends {{feature_name.pascalCase()}}S
 
   @override
   List<Object> get props => [{{feature_name.camelCase()}}s];
+
+  @override
+  get data => {{feature_name.camelCase()}}s;
 }
 
 class {{feature_name.pascalCase()}}Error extends {{feature_name.pascalCase()}}State implements BaseError {
