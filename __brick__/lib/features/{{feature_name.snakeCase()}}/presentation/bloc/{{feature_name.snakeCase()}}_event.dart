@@ -7,4 +7,4 @@ abstract class {{feature_name.pascalCase()}}Event extends Equatable {
   List<Object> get props => [];
 }
 
-class Load{{feature_name.pascalCase()}}s extends {{feature_name.pascalCase()}}Event {} 
+class {{feature_name.pascalCase()}}LoadEvent extends {{feature_name.pascalCase()}}Event {} 

@@ -7,6 +7,7 @@ import '../datasources/{{feature_name.snakeCase()}}_remote_datasource_interface.
 import '../datasources/{{feature_name.snakeCase()}}_local_datasource_interface.dart';
 import '../../domain/entities/{{feature_name.snakeCase()}}.dart';
 import '../../domain/repositories/{{feature_name.snakeCase()}}_repository.dart';
+import '../models/{{feature_name.snakeCase()}}_model.dart';
 
 
 @LazySingleton(as: {{feature_name.pascalCase()}}Repository)
