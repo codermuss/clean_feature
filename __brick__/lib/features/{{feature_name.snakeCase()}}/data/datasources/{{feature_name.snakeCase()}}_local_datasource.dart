@@ -1,5 +1,6 @@
 import './{{feature_name.snakeCase()}}_local_datasource_interface.dart';
 import '../models/{{feature_name.snakeCase()}}_model.dart';
+import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: {{feature_name.pascalCase()}}LocalDataSource)
 class {{feature_name.pascalCase()}}LocalDataSourceImpl implements {{feature_name.pascalCase()}}LocalDataSource {

@@ -4,9 +4,7 @@ import 'package:{{project_name}}/core/error/failures.dart';
 import 'package:{{project_name}}/core/network/network_info.dart';
 import 'package:{{project_name}}/core/repository/repository_helper.dart';
 import '../datasources/{{feature_name.snakeCase()}}_remote_datasource_interface.dart';
-import '../datasources/{{feature_name.snakeCase()}}_remote_datasource.dart';
 import '../datasources/{{feature_name.snakeCase()}}_local_datasource_interface.dart';
-import '../datasources/{{feature_name.snakeCase()}}_local_datasource.dart';
 import '../../domain/entities/{{feature_name.snakeCase()}}.dart';
 import '../../domain/repositories/{{feature_name.snakeCase()}}_repository.dart';
 
@@ -17,7 +15,7 @@ class {{feature_name.pascalCase()}}RepositoryImpl implements {{feature_name.pasc
   final {{feature_name.pascalCase()}}LocalDataSource localDataSource;
   final RepositoryHelper repositoryHelper;
 
-  HomeRepositoryImpl({
+  {{feature_name.pascalCase()}}RepositoryImpl({
     required this.remoteDataSource, 
     required this.localDataSource, 
     required NetworkInfo networkInfo,
@@ -25,7 +23,7 @@ class {{feature_name.pascalCase()}}RepositoryImpl implements {{feature_name.pasc
 
   @override
   Future<Either<Failure, List<{{feature_name.pascalCase()}}>>> get{{feature_name.pascalCase()}}s() async {
-    return repositoryHelper.fetchData<List<{{feature_name.pascalCase()}}>>(
+    return repositoryHelper.fetchData<List<{{feature_name.pascalCase()}}Model>>(
       fetchFromRemote: () => remoteDataSource.get{{feature_name.pascalCase()}}s(),
       fetchFromLocal: () => localDataSource.getCached{{feature_name.pascalCase()}}s(),
       saveToLocal: (data) => localDataSource.cache{{feature_name.pascalCase()}}s(data),

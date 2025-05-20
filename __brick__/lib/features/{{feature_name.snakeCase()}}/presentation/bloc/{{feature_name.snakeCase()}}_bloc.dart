@@ -3,7 +3,6 @@ import 'package:injectable/injectable.dart';
 import '../../domain/usecases/get_{{feature_name.snakeCase()}}.dart';
 import '{{feature_name.snakeCase()}}_event.dart';
 import '{{feature_name.snakeCase()}}_state.dart';
-import 'package:{{project_name}}/core/usecases/usecase.dart';
 
 @lazySingleton
 class {{feature_name.pascalCase()}}Bloc extends Bloc<{{feature_name.pascalCase()}}Event, {{feature_name.pascalCase()}}State> {
@@ -18,7 +17,7 @@ class {{feature_name.pascalCase()}}Bloc extends Bloc<{{feature_name.pascalCase()
     Emitter<{{feature_name.pascalCase()}}State> emit,
   ) async {
     emit({{feature_name.pascalCase()}}Loading());
-    final result = await get{{feature_name.pascalCase()}}s(NoParams());
+    final result = await get{{feature_name.pascalCase()}}s();
     result.fold(
       (failure) => emit({{feature_name.pascalCase()}}Error(message: 'Failed to load {{feature_name.camelCase()}}s')),
       ({{feature_name.camelCase()}}s) => emit({{feature_name.pascalCase()}}Loaded({{feature_name.camelCase()}}s: {{feature_name.camelCase()}}s)),
