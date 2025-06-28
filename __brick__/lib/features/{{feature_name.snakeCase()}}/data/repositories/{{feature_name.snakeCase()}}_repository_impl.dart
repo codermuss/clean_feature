@@ -1,13 +1,11 @@
-import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:{{project_name}}/core/error/failures.dart';
-import 'package:{{project_name}}/core/network/network_info.dart';
-import 'package:{{project_name}}/core/repository/repository_helper.dart';
+import 'package:{{project_name}}/core/utils/helpers/repository_helper.dart';
+import 'package:{{project_name}}/core/network/info/network_info.dart';
+import 'package:{{project_name}}/core/network/models/base_response.dart';
 import '../datasources/{{feature_name.snakeCase()}}_remote_datasource_interface.dart';
 import '../datasources/{{feature_name.snakeCase()}}_local_datasource_interface.dart';
 import '../../domain/entities/{{feature_name.snakeCase()}}.dart';
 import '../../domain/repositories/{{feature_name.snakeCase()}}_repository.dart';
-import '../models/{{feature_name.snakeCase()}}_model.dart';
 
 
 @LazySingleton(as: {{feature_name.pascalCase()}}Repository)
@@ -24,21 +22,21 @@ class {{feature_name.pascalCase()}}RepositoryImpl implements {{feature_name.pasc
 
   {{#is_list}}
   @override
-  Future<Either<Failure, List<{{feature_name.pascalCase()}}>>> get{{feature_name.pascalCase()}}s() async {
-    return repositoryHelper.fetchData<List<{{feature_name.pascalCase()}}Model>>(
-      fetchFromRemote: () => remoteDataSource.get{{feature_name.pascalCase()}}s(),
+  Future<BaseResponse<List<{{feature_name.pascalCase()}}>?>> get{{feature_name.pascalCase()}}s() async {
+    return repositoryHelper.fetchData<List<{{feature_name.pascalCase()}}>>(
+      fetchFromRemote: remoteDataSource.get{{feature_name.pascalCase()}}s,
       fetchFromLocal: () => localDataSource.getCached{{feature_name.pascalCase()}}s(),
-      saveToLocal: (data) => localDataSource.cache{{feature_name.pascalCase()}}s(data),
+      saveToLocal:localDataSource.cache{{feature_name.pascalCase()}}s,
     );
   }
   {{/is_list}}
   {{^is_list}}
   @override
-  Future<Either<Failure, {{feature_name.pascalCase()}}>> get{{feature_name.pascalCase()}}() async {
-    return repositoryHelper.fetchData<{{feature_name.pascalCase()}}Model>(
-      fetchFromRemote: () => remoteDataSource.get{{feature_name.pascalCase()}}(),
-      fetchFromLocal: () => localDataSource.getCached{{feature_name.pascalCase()}}(),
-      saveToLocal: (data) => localDataSource.cache{{feature_name.pascalCase()}}(data),
+  Future<BaseResponse<{{feature_name.pascalCase()}}?>> get{{feature_name.pascalCase()}}() async {
+    return repositoryHelper.fetchData<{{feature_name.pascalCase()}}>(
+      fetchFromRemote: remoteDataSource.get{{feature_name.pascalCase()}},
+      fetchFromLocal: localDataSource.getCached{{feature_name.pascalCase()}},
+      saveToLocal: localDataSource.cache{{feature_name.pascalCase()}},
     );
   }
   {{/is_list}}

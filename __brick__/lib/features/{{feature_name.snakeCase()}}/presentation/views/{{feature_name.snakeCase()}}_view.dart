@@ -4,12 +4,12 @@ import '../bloc/{{feature_name.snakeCase()}}_bloc.dart';
 import '../bloc/{{feature_name.snakeCase()}}_event.dart';
 import '../bloc/{{feature_name.snakeCase()}}_state.dart';
 import 'package:{{project_name}}/core/di/injection.dart';
-import 'package:{{project_name}}/core/widgets/auto_bloc_state_builder.dart';
+import 'package:{{project_name}}/core/presentation/widgets/auto_bloc_state_builder.dart';
 import 'package:{{project_name}}/features/{{feature_name.snakeCase()}}/domain/entities/{{feature_name.snakeCase()}}.dart';
 import '../widgets/{{feature_name.snakeCase()}}_list_item.dart';
 
-class {{feature_name.pascalCase()}}Page extends StatelessWidget {
-  const {{feature_name.pascalCase()}}Page({super.key});
+class {{feature_name.pascalCase()}}View extends StatelessWidget {
+  const {{feature_name.pascalCase()}}View({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +29,7 @@ class _{{feature_name.pascalCase()}}Body extends StatelessWidget {
       {{feature_name.pascalCase()}}Bloc,
       {{feature_name.pascalCase()}}State,
       {{#is_list}}List<{{feature_name.pascalCase()}}>{{/is_list}}{{^is_list}}{{feature_name.pascalCase()}}{{/is_list}},
-      {{feature_name.pascalCase()}}Event
-    >(
+      {{feature_name.pascalCase()}}Event>(
       loadEvent: {{feature_name.pascalCase()}}LoadEvent(),
       onSuccess: (data) {
         return Scaffold(

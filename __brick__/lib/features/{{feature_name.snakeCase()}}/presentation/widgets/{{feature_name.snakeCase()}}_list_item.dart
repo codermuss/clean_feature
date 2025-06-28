@@ -16,9 +16,9 @@ class {{feature_name.pascalCase()}}ListItem extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: ListTile(
-        title: Text({{feature_name.camelCase()}}.id),
+        title: Text('${{feature_name.camelCase()}}'),
         subtitle: Text(
-          {{feature_name.camelCase()}}.id,
+          '${{feature_name.camelCase()}}',
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
         ),

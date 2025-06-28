@@ -1,12 +1,11 @@
-import 'package:dartz/dartz.dart';
 import '../entities/{{feature_name.snakeCase()}}.dart';
-import 'package:{{project_name}}/core/error/failures.dart';
+import 'package:{{project_name}}/core/network/models/base_response.dart';
 
 abstract class {{feature_name.pascalCase()}}Repository {
   {{#is_list}}
-  Future<Either<Failure, List<{{feature_name.pascalCase()}}>>> get{{feature_name.pascalCase()}}s();
+  Future<BaseResponse<List<{{feature_name.pascalCase()}}>?>> get{{feature_name.pascalCase()}}s();
   {{/is_list}}
   {{^is_list}}
-  Future<Either<Failure, {{feature_name.pascalCase()}}>> get{{feature_name.pascalCase()}}();
+  Future<BaseResponse<{{feature_name.pascalCase()}}?>> get{{feature_name.pascalCase()}}();
   {{/is_list}}
 } 

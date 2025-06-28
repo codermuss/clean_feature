@@ -1,30 +1,23 @@
 import 'package:injectable/injectable.dart';
-import 'package:{{project_name}}/core/network/dio_client.dart';
-import '../models/{{feature_name.snakeCase()}}_model.dart';
-import 'package:{{project_name}}/core/constants/endpoints.dart';
+import 'package:{{project_name}}/core/network/http_client/iw_http_client.dart';
+import 'package:{{project_name}}/core/network/models/base_response.dart';
+import 'package:{{project_name}}/core/utils/constants/endpoints.dart';
+import 'package:{{project_name}}/features/{{feature_name.snakeCase()}}/domain/entities/{{feature_name.snakeCase()}}.dart';
 import './{{feature_name.snakeCase()}}_remote_datasource_interface.dart';
 
 @LazySingleton(as: {{feature_name.pascalCase()}}RemoteDataSource)
 class {{feature_name.pascalCase()}}RemoteDataSourceImpl implements {{feature_name.pascalCase()}}RemoteDataSource {
-  final DioClient dioClient;
+  final IWHttpClient iwHttpClient;
 
-  {{feature_name.pascalCase()}}RemoteDataSourceImpl({required this.dioClient});
+  {{feature_name.pascalCase()}}RemoteDataSourceImpl({required this.iwHttpClient});
 
   {{#is_list}}
+  // TODO: Update endpoint
   @override
-  Future<List<{{feature_name.pascalCase()}}Model>> get{{feature_name.pascalCase()}}s() async {
-    // TODO: Update endpoint
-    final response = await dioClient.get(Endpoints.{{feature_name.camelCase()}});
-    final data = response.data['data'] as List;
-    return data.map((json) => {{feature_name.pascalCase()}}Model.fromJson(json)).toList();
-  }
+  Future<BaseResponse<List<{{feature_name.pascalCase()}}>?>> get{{feature_name.pascalCase()}}s() async => await iwHttpClient.fetch<{{feature_name.pascalCase()}},List<{{feature_name.pascalCase()}}>>(path: Endpoints.{{feature_name.camelCase()}});
   {{/is_list}}
   {{^is_list}}
   @override
-  Future<{{feature_name.pascalCase()}}Model> get{{feature_name.pascalCase()}}() async {
-    // TODO: Update endpoint
-    final response = await dioClient.get(Endpoints.{{feature_name.camelCase()}});
-    return {{feature_name.pascalCase()}}Model.fromJson(response.data['data']);
-  }
+  Future<BaseResponse<{{feature_name.pascalCase()}}?>> get{{feature_name.pascalCase()}}() async => await iwHttpClient.fetch<{{feature_name.pascalCase()}},{{feature_name.pascalCase()}}>(path: Endpoints.{{feature_name.camelCase()}});
   {{/is_list}}
 } 

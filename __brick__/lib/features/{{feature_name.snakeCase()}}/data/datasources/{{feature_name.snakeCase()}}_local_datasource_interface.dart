@@ -1,12 +1,12 @@
-import '../models/{{feature_name.snakeCase()}}_model.dart';
-
+import 'package:{{project_name}}/features/{{feature_name.snakeCase()}}/domain/entities/{{feature_name.snakeCase()}}.dart';
+import 'package:{{project_name}}/core/network/models/base_response.dart';
 abstract class {{feature_name.pascalCase()}}LocalDataSource {
   {{#is_list}}
-  Future<List<{{feature_name.pascalCase()}}Model>> getCached{{feature_name.pascalCase()}}s();
-  Future<void> cache{{feature_name.pascalCase()}}s(List<{{feature_name.pascalCase()}}Model> models);
+  Future<BaseResponse<List<{{feature_name.pascalCase()}}>>> getCached{{feature_name.pascalCase()}}s();
+  Future<void> cache{{feature_name.pascalCase()}}s(List<{{feature_name.pascalCase()}}>? models);
   {{/is_list}}
   {{^is_list}}
-  Future<{{feature_name.pascalCase()}}Model> getCached{{feature_name.pascalCase()}}();
-  Future<void> cache{{feature_name.pascalCase()}}({{feature_name.pascalCase()}}Model model);
+  Future<BaseResponse<{{feature_name.pascalCase()}}>> getCached{{feature_name.pascalCase()}}();
+  Future<void> cache{{feature_name.pascalCase()}}({{feature_name.pascalCase()}}? model);
   {{/is_list}}
 } 
