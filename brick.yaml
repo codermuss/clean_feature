@@ -14,7 +14,7 @@ vars:
     type: string
     description: The root import package name (optional)
     prompt: What is your project package name? (optional)
-    default: "iwallet_next"
+    default: "iwallet_turkiye"
   is_list:
     type: boolean
     description: Should the feature use a list of models?
